@@ -37,5 +37,5 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Walkthrough Video
 
-![](Assets/Untitled_%20Jan%2011,%202023%2010_57%20PM.webm)
+![](https://user-images.githubusercontent.com/114713151/211973508-0a3072df-9a00-4912-9e9f-e6b0f00f17e5.webm)
 
