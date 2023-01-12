@@ -37,4 +37,5 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Walkthrough Video
 
+![](Assets/Untitled_%20Jan%2011,%202023%2010_57%20PM.webm)
 
