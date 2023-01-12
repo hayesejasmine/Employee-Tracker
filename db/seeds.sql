@@ -1,4 +1,4 @@
-INSERT INTO department (name)
+INSERT INTO department (ame)
 VALUES ('Human Resources'),
        ('Loan Processing'),
        ('Underwriting'),
@@ -6,13 +6,13 @@ VALUES ('Human Resources'),
        ('Employment Verification');
 
 INSERT INTO role (title, salary, department_id)
-VALUES ('Credit Underwriter', 120000.00, 1),
-       ('Collateral Underwriter', 110000.00, 2),
-       ('Loan Specialist', 45000.00, 3),
-       ('Credit Underwriter', 120000.00, 4),
-       ('Employee Relations Manager', 67000.00, 4),
-       ('Benefits Manager', 70000.00, 5),
-       ('Verification Specialist', 35000.00, 5);
+VALUES ('Credit Underwriter', 120000, 1),
+       ('Collateral Underwriter', 110000, 2),
+       ('Loan Specialist', 45000, 3),
+       ('Credit Underwriter', 120000, 4),
+       ('Employee Relations Manager', 67000, 4),
+       ('Benefits Manager', 70000, 5),
+       ('Verification Specialist', 35000, 5);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ('Anne', 'Clark', 1, NULL),

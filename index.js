@@ -26,8 +26,7 @@ const db = mysql.createConnection(
                 'Add a department',
                 'Add a role',
                 'Add an employee',
-                'Update an employee role',
-                'Delete an Employee'
+                'Update an employees role',
             ]
         } 
     ])
@@ -81,7 +80,7 @@ switch (data.InitialSelection) {
   }
 
   const viewAllRoles = () => {
-    db.query('select * from department', function (err, results) {
+    db.query('select * from role', function (err, results) {
         console.log(`\n`);
         console.table(results);
         promptUser();
@@ -89,8 +88,12 @@ switch (data.InitialSelection) {
   }
 
   const viewAllEmployees = () => {
-    db.query('select * from employee', function (err, results) {
-        console.log(`\n`);
+    db.query(`SELECT employee.id, employee.first_name, employee.last_name, role.title AS job_title, department.name, role.salary, CONCAT(manager.first_name, ' ' ,manager.last_name) AS manager FROM employee 
+                LEFT JOIN role ON employee.role_id = role.id
+                LEFT JOIN department ON role.department_id = department.id
+                LEFT JOIN employee AS manager ON employee.manager_id = manager.id
+                ORDER By employee.id`, function (err, results) {   
+                    console.log(`\n`);
         console.table(results);
         promptUser();
     })
@@ -183,7 +186,7 @@ function addAnEmployee() {
                 {
                     name: 'first_name',
                     type: 'input', 
-                    message: "What is the employee's fist name? ",
+                    message: "What is the employee's first name? ",
                 },
                 {
                     name: 'last_name',
@@ -234,56 +237,3 @@ function addAnEmployee() {
         })
 };
 
-function updateEmployeeRole() {
-
-};
-
-function deleteEmployee() {
-    db.query('SELECT * FROM employee', function (err, res) {
-        console.log(res)
-        const choices = res.map(({id,first_name, last_name}) => ({
-            name: `${first_name} ${last_name}`,
-            value: id
-        }))
-        if (err) throw err;
-        inquirer
-            .prompt([
-                {
-                    type:"list",
-                    name: 'employeeid',
-                    message:"Please choose the employee that you want to remove",
-                    choices
-
-                }
-                ]).then(function (answer) {
-                    console.log(answer)
-                    db.query('DELETE FROM employee WHERE id =?', [answer.employee_id], function (err, res) {
-                        if ()
-                    } )
-
-
-                    // let role_id;
-                    // for (let a = 0; a < res.length; a++) {
-                    //     if (res[a].title == answer.role) {
-                    //         role_id = res[a].id;
-                    //         console.log(role_id)
-                    //     }                  
-                    // }  
-                    // db.query(
-                    //     'INSERT INTO employee SET ?',
-                    //     {
-                    //         first_name: answer.first_name,
-                    //         last_name: answer.last_name,
-                    //         manager_id: answer.manager_id,
-                    //         role_id: role_id,
-                    //     });
-                    // var query = 'SELECT * FROM employee';
-                    // db.query(query, function(err, res) {
-                    // if(err)throw err;
-                    // console.log('Your employee has been added!');
-                    // console.table('All Employees:', res);
-                    // promptUser();
-                    // })
-                })
-        })
-};
