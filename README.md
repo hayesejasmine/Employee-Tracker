@@ -33,7 +33,7 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Mock-Up Images
 
-![mockup!](/Users/jasminehayes/Assignments/Employee-Tracker/Assets/Screen Shot 2023-01-11 at 10.18.09 PM.png)
+![](Assets/Screen%20Shot%202023-01-11%20at%2010.18.09%20PM.png)
 
 ## Walkthrough Video
 
