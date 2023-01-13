@@ -27,6 +27,7 @@ const db = mysql.createConnection(
                 'Add a role',
                 'Add an employee',
                 'Update an employees role',
+                'Delete an Employee'
             ]
         } 
     ])
@@ -236,4 +237,39 @@ function addAnEmployee() {
                 })
         })
 };
+            
+
+function deleteEmployee() {
+    db.query('SELECT * FROM employee', function (err, res) {
+        console.log(res)
+        const choices = res.map(({id,first_name, last_name}) => ({
+            name: `${first_name} ${last_name}`,
+            value: id
+        }))
+        if (err) throw err;
+        inquirer
+            .prompt([
+                {
+                    type:"list",
+                    name: 'employeeid',
+                    message:"Please choose the employee that you want to remove",
+                    choices
+
+                }
+            ]).then(function (answer) {
+                console.log(answer)
+                db.query('DELETE FROM employee WHERE id =?', [answer.employeeid], function (err, res) {
+                    if (err) throw err;
+                    
+                    var query = 'SELECT * FROM employee';
+                    db.query(query, function(err, res) {
+                    if (err) throw err;
+                    console.log("The selected employee has been removed.");
+                    console.table('All Employees:', res);
+                promptUser();
+                } );
+            })
+            })
+            })
+        };
 

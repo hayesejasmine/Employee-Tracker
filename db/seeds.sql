@@ -1,4 +1,4 @@
-INSERT INTO department (ame)
+INSERT INTO department (name)
 VALUES ('Human Resources'),
        ('Loan Processing'),
        ('Underwriting'),
